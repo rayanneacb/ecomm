@@ -1,4 +1,4 @@
 import { createUserUseCase } from "../src/use-case/createUserAccount.js";
 
-createUserUseCase
-console.log(createUserUseCase("nome1","emailteste","123456"));
+const user = createUserUseCase("Rayanne", "rayannefernandacb@gmail.com","1234")
+console.log(user)
