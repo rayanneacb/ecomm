@@ -2,14 +2,13 @@ export const produto1 = {
     nome: "carro",
     valor: "50",
     quantidade: 1,
-    descricao: "description",
     categoria: "automovel",
-    caracteristicas: [
-      {
-        nome: "carro",
-        descricao: "carro de corrida",
-      },
-    ],
+    caracteristicas: {
+      nome: "rosa", 
+      descricao: "description"
+    },
+    usuarioId: "2",
+    data: "2022-04-12",
     imagens: [
       {
         url: "image.png",
@@ -24,12 +23,14 @@ export const produto1 = {
     quantidade: 4,
     descricao: "description",
     categoria: "carros",
-    caracteristicas: [
+    usuarioId: "3",
+    caracteristicas: 
       {
         nome: "carro2",
         descricao: "carro de passeio",
+    
       },
-    ],
+    
     imagens: [
       {
         url: "image.png",
