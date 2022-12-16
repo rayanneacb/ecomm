@@ -6,7 +6,8 @@ router.post('/accounts', function(request, response) {
     const { name, email, password } = request.body;
     const saltRounds = 10;
     const encodedPassword = bcrypt.hashSync(password,saltRounds)
-    createUserUseCase(name, email, password)
+    console.log(encodedPassword)
+    createUserUseCase(name, email, encodedPassword)
         .then(createdAccount => {
             delete createdAccount.password
             response.status(201).json(createdAccount)
