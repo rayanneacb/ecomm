@@ -1,3 +1,0 @@
-# ecomm
-Repositório PagoNxt 
-
