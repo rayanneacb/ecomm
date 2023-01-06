@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 async function saveAccountConnection() {
-    const connectionURL = 'mongodb://localhost:27017';
+    const connectionURL = 'mongodb://mongouser:mongopass@localhost:27017';
     const connection = new MongoClient(connectionURL);
     await connection.connect();
 
