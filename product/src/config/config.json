@@ -1,6 +1,7 @@
 {
   "development": {
     "username": "root",
+    "port": "3307",
     "password": "caixa162004!",
     "database": "products",
     "host": "127.0.0.1",
