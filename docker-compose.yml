@@ -1,21 +1,35 @@
 version: "3.9"
 services:
-  product: 
-   image: app/account
-   build: account
-
-
-
-account:  
+  product:
+    entrypoint: npm run dev
+    image: app/product
+    build: product
+    volumes:
+      - ./product:/app
+    ports:
+      - 3001:3000
+  account:
     image: app/account
     build: account
-    volumes: 
-    - ./account:/app
-    
-
-    account-database:
-      image: mongo
-      container_name: account-database
-      ports:
-       - 27017:27017
-    env_file: account/.env
+    volumes:
+      - ./account:/app
+    ports:
+      - 3000:3000
+  account-database:
+    image: mongo
+    container_name: account-database
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongouser
+      - MONGO_INITDB_ROOT_PASSWORD=mongopass
+      - MONGO_INITDB_DATABASE=accounts
+    ports:
+      - 27017:27017
+  product_db:
+    image: mysql
+    container_name: product_db
+    environment:
+     - MYSQL_DATABASE=products
+     - MYSQL_ROOT_PASSWORD=caixa162004!
+    ports:
+     - 3307:3306
