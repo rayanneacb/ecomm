@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import client from '../repositories/databaseClient.js';
-//export { default as produtos } from '';
-  export class Produtos extends Model {
+import client from '../../repositories/databaseClient.js';
+  export class Product extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,13 +10,12 @@ import client from '../repositories/databaseClient.js';
       // define association here
     }
   }
-  Produtos.init({
+  Product.init({
     name: DataTypes.STRING,
     value: DataTypes.DECIMAL,
     quantity: DataTypes.INTEGER,
     description: DataTypes.TEXT,
-    category: DataTypes.STRING,
-    iD: DataTypes.STRING
-  }, 
-  { sequelize: client, modelName: 'Produtos'}
+    category: DataTypes.STRING
+  },  
+  { sequelize: client, modelName: 'Product'}
   );

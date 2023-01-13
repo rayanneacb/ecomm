@@ -1,7 +1,10 @@
-import { Router } from 'express';
+import pkg from 'express';
+const { Router } = pkg;
+//import { Router } from 'express';
 import { createProductUseCase } from './use-case/createProductUseCase.js';
 import { listProducts } from './use-case/listProducts.js';
-export const router = new Router();
+
+const router = Router();
 router.get('/products', function(request,response) {
     listProducts ()
     .then(products => {
@@ -13,7 +16,7 @@ router.get('/products', function(request,response) {
 
 } );
 router.post('/products', function(request, response) {
-    const { produto} = request.body
+    const  produto = request.body
     createProductUseCase(produto)
         .then(saveProduct => {
             response.status(201).json(saveProduct)
@@ -22,3 +25,5 @@ router.post('/products', function(request, response) {
             response.status(400).json({ status: 'error', message: error.message });
         }); 
 });
+
+export { router };

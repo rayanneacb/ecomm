@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   product:
+    entrypoint: npm run dev
     image: app/product
     build: product
     volumes:
@@ -26,7 +27,7 @@ services:
       - 27017:27017
   product_db:
     image: mysql
-    
+    container_name: product_db
     environment:
      - MYSQL_DATABASE=products
      - MYSQL_ROOT_PASSWORD=caixa162004!
