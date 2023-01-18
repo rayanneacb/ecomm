@@ -1,20 +1,22 @@
-import { saveAccount } from "../../repositories/accountRepository.js";
+import { saveAccount } from '../../repositories/accountRepository';
+import  bcrypt from 'bcryptjs';
+import { randomUUID } from 'crypto';
 
-export  async function createUserUseCase(nome, email, senha){
-  /* const bcrypt = require ('bcrypt')
-   const crypto = require ('crypto')
-    const salt = bcrypt.genSaltSync(10)
-    const senhaParaSalvar = bcrypt.hashSync(password, salt) */
-   const data = new Date();
-   let dataFormatada = data.toISOString().substring(0, 10);
-   console.log(dataFormatada);
+export async function createUserUseCase(name, email, password) {
+    
+    const id = randomUUID();
+    const createdDate = new Date().toISOString().substring(0,10);
+    const passHash = bcrypt.hashSync(password, 10);
+
     const user = {
-      name: nome,
-      email: email,
-      password: senha,
-      createdDate: dataFormatada,
-   }
-   saveAccount(user);
-   return (user)
+         id,
+         name,
+         email,
+         password: passHash,
+         createdDate
+    };
+    
+    saveAccount(user);
+    return user;
 }
 
