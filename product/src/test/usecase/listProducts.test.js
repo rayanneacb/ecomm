@@ -1,5 +1,24 @@
+
+import request from 'supertest';
+import {app} from  '../../src/app.js';
 import { listProducts } from "../../use-case/listProducts.js";
 
+describe('Product List', () => {
+    it('should return an empty list of products', async () => {
+        await request(app)
+            .get('/products')
+            .expect(200)
+            .expect(({ body }) => {
+                expect(body).toEqual([]);
+            });
+    });
 
-const productList = await listProducts();
-console.log("Product: ", productList);
+    it('should return a list of products', async () => {
+        await request(app)
+            .get('/products')
+            .expect(200)
+            .expect(({ body }) => {
+                expect(body).toEqual([]);
+            });
+    });
+});

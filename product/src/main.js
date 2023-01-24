@@ -1,19 +1,17 @@
-import express from 'express';
-import { router } from './routes.js';
-import swaggerUi from "swagger-ui-express";
-import apiDocs from  "./api-docs.json" assert {type: "json"}; ;
+import swaggerExpress from 'swagger-ui-express';
+import yaml from 'yamljs';
+
+import { app } from './app.js'
 import client from './repositories/databaseClient.js';
-const app = express();
-app.use(express.json());
-app.use(router);
-//db.sync(() => console.log(`Banco de dados conectado: ${process.env.DB_NAME}`));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
-app.listen(3000, function () {
-    console.log('Servidor iniciado na porta 3000');
-client.authenticate()
-    .then(() => {
-        console.log('Db connection OK!')
-    }).catch(e => {
-        console.log('Db connection Error: ', e)
-    })
+
+const swaggerDocs = yaml.load('./docs.yaml');
+
+app.use('/docs', swaggerExpress.serve, swaggerExpress.setup(swaggerDocs));
+
+app.listen(3000, () => {
+    console.log('products service is running');
+
+    client.authenticate()
+        .then(() => { console.log('database connected') })
+        .catch(error => { console.error(error)});
 });

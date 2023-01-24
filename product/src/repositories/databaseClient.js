@@ -1,3 +1,5 @@
 import { Sequelize } from 'sequelize';
-const client = new Sequelize('mysql://root:caixa162004!@product_db/products');  
+
+const client = new Sequelize(process.env.DATABASE_URL);
+
 export default client;
