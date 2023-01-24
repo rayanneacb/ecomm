@@ -1,7 +1,7 @@
 
 import request from 'supertest';
 import {app} from  '../../src/app.js';
-import { listProducts } from "../../use-case/listProducts.js";
+// import { listProducts } from "../../use-case/listProducts.js";
 
 describe('Product List', () => {
     it('should return an empty list of products', async () => {
