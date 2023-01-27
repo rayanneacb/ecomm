@@ -1,6 +1,7 @@
 import { Model, DataTypes } from "sequelize";
-import client from "../../repositories/databaseClient";
-import { Product } from "./product";
+import client from "../../repositories/databaseClient.js";
+import { Product } from "./product.js";
+
    export class ProductFeture extends Model {
     /**
      * Helper method for defining associations.

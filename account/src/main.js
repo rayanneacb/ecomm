@@ -4,6 +4,6 @@ import { app } from './app.js';
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(3000, function () {
+app.listen(process.env.PORT_LISTEN, function () {
     console.log('accounts server is running');
 });

@@ -1,11 +1,16 @@
 import { saveAccount } from '../../repositories/accountRepository';
-import bcrypt from 'bcryptjs';
-import { randomUUID } from 'crypto';
+import { existsAccountByEmail } from '../../repositories/accountRepository';
 import { hashPassword } from '../helpers/password.js';
-import { saveAccount } from '../../repositories/accountRepository';
-
 
 export async function createUserUseCase(name, email, password) {
+
+    const accountAlreadyExists = await existsAccountByEmail(email);
+
+
+    if(accountAlreadyExists) {
+        console.error('Account already exists', email);
+        throw new Error('Account already exists');
+    }
 
     const id = randomUUID();
 
